@@ -8,6 +8,14 @@ export function EnterpriseCard() {
       <div className="containerPg">
         <h1>Escolha uma de nossas Unidades</h1>
         <UnitCard />
+        <UnitCard />
+        <UnitCard />
+        <UnitCard />
+        <UnitCard />
+        <UnitCard />
+        <UnitCard />
+        <UnitCard />
+        <UnitCard />
       </div>
     </ContainerEnterprise>
   );
