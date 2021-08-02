@@ -1,6 +1,9 @@
 import { ContainerCard } from "./style";
-
-export function UnitCard() {
+type CardProps = {
+  image: string;
+  unidade: string;
+};
+export function UnitCard(props: CardProps) {
   return (
     <ContainerCard>
       <div className="containerCards">
