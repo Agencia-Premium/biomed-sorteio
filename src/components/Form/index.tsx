@@ -28,29 +28,41 @@ export function Formulario() {
 
   return (
     <Container id="formBioMed" onSubmit={handleSubmit}>
+      <label htmlFor="name">Nome</label>
       <input
-        placeholder="Nome"
+        id="name"
+        placeholder="Digite seu nome completo"
         value={name}
         onChange={(e) => setName(e.target.value)}
         required
       />
 
+      <label htmlFor="mail">E-mail</label>
       <input
-        placeholder="E-mail"
+        id="mail"
+        placeholder="Digite seu endereço de e-mail"
         value={mail}
         onChange={(e) => setMail(e.target.value)}
         required
       />
 
+      <label htmlFor="phone">Fone/WhatsApp</label>
       <input
-        placeholder="Fone/WhatsApp"
+        id="phone"
+        placeholder="Digite seu tefefone ou WhatsApp"
         value={phone}
         onChange={(e) => setPhone(maskPhone(e.target.value))}
         required
       />
 
-      <select required value={city} onChange={(e) => setCity(e.target.value)}>
-        <option value=""> Selecione sua cidade </option>
+      <label htmlFor="city">Cidade</label>
+      <select
+        id="city"
+        required
+        value={city}
+        onChange={(e) => setCity(e.target.value)}
+      >
+        <option value=""> Escolha sua Cidade </option>
         {/* {states.map((item, index) => {
           return (
             <option key={index} value={item}>
@@ -79,7 +91,7 @@ export function Formulario() {
         <span className="check">
           Concordo com os
           <a href="/rules" target="_blank">
-            Termos de Uso e Privacidade.
+            Termos de uso e Privacidade.
           </a>
         </span>
       </div>

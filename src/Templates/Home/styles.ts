@@ -6,13 +6,32 @@ export const Container = styled.section`
 
   display: flex;
 
+  @media (max-width: 990px) {
+    display: block;
+  }
+
   .left {
     width: 60%;
     height: 100%;
+    box-shadow: 4px 0px 28px rgba(0, 0, 0, 0.25);
+
+    @media (max-width: 990px) {
+      width: 100%;
+    }
+
+    @media (max-width: 600px) {
+      width: 100%;
+      height: 60%;
+    }
 
     img {
       width: 100%;
       height: 100%;
+
+      @media (max-width: 768px) {
+        width: 100%;
+        height: 100%;
+      }
     }
   }
 
@@ -25,8 +44,20 @@ export const Container = styled.section`
     align-items: center;
     flex-direction: column;
 
+    @media (max-width: 1600px) {
+      padding: 1rem;
+    }
+
+    @media (max-width: 990px) {
+      width: 100%;
+    }
+
     > img {
       padding-bottom: 2rem;
+
+      @media (max-width: 1600px) {
+        padding-bottom: 0rem;
+      }
     }
   }
 `;
