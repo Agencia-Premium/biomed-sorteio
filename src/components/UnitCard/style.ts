@@ -5,6 +5,8 @@ export const ContainerCard = styled.section`
   align-items: center;
   justify-content: center;
   padding: 0 0.75rem;
+  flex-direction: column;
+  gap: 1rem;
 
   .containerCards {
     display: flex;
