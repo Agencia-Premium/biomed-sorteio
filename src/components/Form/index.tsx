@@ -1,9 +1,14 @@
 /* eslint-disable @next/next/no-html-link-for-pages */
 import axios from "axios";
-import React, { FormEvent, useState } from "react";
+import React, { FormEvent, useEffect, useState } from "react";
 import { toast } from "react-toastify";
 
 import { Container } from "./styles";
+
+interface ICitys {
+  id: number;
+  nome: string;
+}
 
 export function Formulario() {
   const [name, setName] = useState("");
@@ -11,12 +16,28 @@ export function Formulario() {
   const [mail, setMail] = useState("");
   const [city, setCity] = useState("");
 
+  const [citysRondonia, setCitysRondonia] = useState<ICitys[]>([]);
+
   const maskPhone = (value: string) => {
     return value
       .replace(/\D/g, "")
       .replace(/(\d{2})(\d)/, "($1) $2")
       .replace(/(\d{5})(\d{4})(\d)/, "$1-$2");
   };
+
+  useEffect(() => {
+    async function listCitys() {
+      await axios
+        .get(
+          "https://servicodados.ibge.gov.br/api/v1/localidades/estados/RO/municipios?orderBy=nome"
+        )
+        .then((response) => {
+          setCitysRondonia(response.data);
+        });
+    }
+
+    listCitys();
+  }, []);
 
   async function handleSubmit(e: FormEvent) {
     e.preventDefault();
@@ -63,17 +84,13 @@ export function Formulario() {
         onChange={(e) => setCity(e.target.value)}
       >
         <option value=""> Escolha sua Cidade </option>
-        {/* {states.map((item, index) => {
+        {citysRondonia.map((item) => {
           return (
-            <option key={index} value={item}>
-              {item}
+            <option key={item.id} value={item.id}>
+              {item.nome}
             </option>
           );
-        })} */}
-
-        <option value=""> Ji-Paraná </option>
-        <option value=""> Porto Velho </option>
-        <option value=""> Outros </option>
+        })}
       </select>
 
       <div className="buttoncheck">
