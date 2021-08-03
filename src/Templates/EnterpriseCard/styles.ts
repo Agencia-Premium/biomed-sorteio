@@ -5,6 +5,7 @@ export const ContainerEnterprise = styled.section`
   height: 100%;
   padding-bottom: 5rem;
   display: flex;
+  flex-direction: column;
   justify-content: center;
   background: var(--bg-container);
 
@@ -13,6 +14,7 @@ export const ContainerEnterprise = styled.section`
     align-items: center;
     justify-content: center;
     flex-wrap: wrap;
+    flex-direction: column;
     gap: 1rem;
     padding: 7rem 0 0 0;
     text-align: center;

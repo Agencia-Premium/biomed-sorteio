@@ -1,24 +1,28 @@
 import { ContainerCard } from "./style";
-type CardProps = {
-  image: string;
-  unidade: string;
-};
-export function UnitCard(props: CardProps) {
+import { titleCard as TitleCard } from "./mock";
+
+export const UnitCard: React.FC = ({}) => {
   return (
     <ContainerCard>
-      <div className="containerCards">
-        <div className="imagem">
-          <img
-            src="../../../images/enterprisesImg/PortoVelho01.png"
-            alt="imagem do estabelecimento biomed"
-            className="imgCard"
-          />
-        </div>
-        <div className="contextCard">
-          <h2>Unidade 01</h2>
-          <p>Porto Velho</p>
-        </div>
-      </div>
+      {TitleCard.map((e, index) => {
+        return (
+          // eslint-disable-next-line react/jsx-key
+          <div className="containerCards">
+            <div className="imagem">
+              <img
+                src="../../../images/enterprisesImg/PortoVelho01.png"
+                alt="imagem do estabelecimento biomed"
+                className="imgCard"
+              />
+            </div>
+
+            <div key={index} className="contextCard">
+              <h2>{e.title}</h2>
+              <p>{e.description}</p>
+            </div>
+          </div>
+        );
+      })}
     </ContainerCard>
   );
-}
+};
