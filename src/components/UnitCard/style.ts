@@ -5,21 +5,24 @@ export const ContainerCard = styled.section`
   align-items: center;
   justify-content: center;
   padding: 0 0.75rem;
-  flex-direction: column;
+  flex-wrap: wrap;
   gap: 1rem;
+  transition: 0.5s;
 
   .containerCards {
     display: flex;
     align-items: center;
     justify-content: center;
-    max-width: 36.4rem;
+    max-width: 33.4rem;
     max-height: 13.6rem;
     background-color: #fff;
     border-radius: 0.65rem;
     background-color: var(--bg-card);
+    transition: 0.5s;
   }
   .containerCards:hover {
-    border: 2px solid var(--contorno);
+    border: 1.5px solid var(--contorno);
+    transition: 0.5s;
   }
 
   .imagem {
@@ -28,10 +31,11 @@ export const ContainerCard = styled.section`
     display: flex;
     align-items: center;
     justify-content: center;
+    transition: 0.5s;
 
     .imgCard {
       width: 100%;
-      height: 13.5rem;
+      height: 11.5rem;
       border-radius: 0.75rem 0 0 0.75rem;
     }
     transition: 0.5s;
@@ -39,7 +43,7 @@ export const ContainerCard = styled.section`
 
   .contextCard {
     width: 40%;
-    height: 13.5rem;
+    height: 11.5rem;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -51,8 +55,7 @@ export const ContainerCard = styled.section`
     transition: 0.5s;
   }
   .contextCard:hover {
-    width: 14rem;
     box-shadow: -10px 0px 9px -1px rgba(0, 0, 0, 0.15);
-    transition: 0.5s;
+    transition: 0.9s;
   }
 `;

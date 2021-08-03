@@ -5,9 +5,9 @@ export default createGlobalStyle`
   :root {
     --primary-color: #FBFCFF;
     --blue-200: #3485FF;
-    --bg-container: #00183E;
+    --bg-container: linear-gradient(288deg, #00183E 7.52%, #286197 54.16%, #000C32 94.05%);
     --bg-card:#E0ECFF;
-    --contorno: #00FF40;
+    --contorno: #028602;
   } 
   
   * {

@@ -10,8 +10,8 @@ export const UnitCard: React.FC = ({}) => {
           <div className="containerCards">
             <div className="imagem">
               <img
-                src="../../../images/enterprisesImg/PortoVelho01.png"
-                alt="imagem do estabelecimento biomed"
+                src={e.src}
+                alt={`imagem do estabelecimento biomed ${e.description}`}
                 className="imgCard"
               />
             </div>

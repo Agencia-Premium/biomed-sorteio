@@ -9,6 +9,7 @@ export function EnterpriseCard() {
         <h1>Escolha uma de nossas Unidades</h1>
         <UnitCard />
       </div>
+      <button className="button">Próximo</button>
     </ContainerEnterprise>
   );
 }
