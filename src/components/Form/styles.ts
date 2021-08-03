@@ -11,6 +11,40 @@ export const Container = styled.form`
   flex-direction: column;
   justify-content: center;
 
+  .signInButton {
+    height: 3rem;
+    border-radius: 3rem;
+    background: #e83f5b;
+    border: 0;
+    padding: 0 1.5rem;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    color: var(--white);
+    font-weight: bold;
+
+    svg {
+      width: 20px;
+      height: 20px;
+    }
+
+    svg:first-child {
+      margin-right: 1rem;
+    }
+
+    svg.closeIcon {
+      margin-left: 1rem;
+    }
+
+    transition: filter 0.2s;
+
+    &:hover {
+      filter: brightness(0.8);
+    }
+  }
+
   @media (min-width: 2560px) {
     width: 60rem;
     height: 48rem;

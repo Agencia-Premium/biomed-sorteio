@@ -2,6 +2,10 @@
 import axios from "axios";
 import React, { FormEvent, useEffect, useState } from "react";
 import { toast } from "react-toastify";
+import { FaGoogle } from "react-icons/fa";
+import { FiX } from "react-icons/fi";
+
+import { signIn, signOut, useSession } from "next-auth/client";
 
 import { Container } from "./styles";
 
@@ -47,8 +51,33 @@ export function Formulario() {
     setMail("");
   }
 
+  const [session] = useSession();
+
+  console.log(session);
+
   return (
     <Container id="formBioMed" onSubmit={handleSubmit}>
+      {session ? (
+        <button
+          type="button"
+          onClick={() => signOut()}
+          className="signInButton"
+        >
+          <FaGoogle color="#04d361" />
+          {session?.user?.name}
+          <FiX color="#737380" />
+        </button>
+      ) : (
+        <button
+          type="button"
+          onClick={() => signIn("google")}
+          className="signInButton"
+        >
+          <FaGoogle color="#eba417" />
+          Sign in with Google
+        </button>
+      )}
+
       <label htmlFor="name">Nome</label>
       <input
         id="name"
@@ -57,7 +86,6 @@ export function Formulario() {
         onChange={(e) => setName(e.target.value)}
         required
       />
-
       <label htmlFor="mail">E-mail</label>
       <input
         id="mail"
@@ -66,7 +94,6 @@ export function Formulario() {
         onChange={(e) => setMail(e.target.value)}
         required
       />
-
       <label htmlFor="phone">Fone/WhatsApp</label>
       <input
         id="phone"
@@ -75,7 +102,6 @@ export function Formulario() {
         onChange={(e) => setPhone(maskPhone(e.target.value))}
         required
       />
-
       <label htmlFor="city">Cidade</label>
       <select
         id="city"
@@ -92,7 +118,6 @@ export function Formulario() {
           );
         })}
       </select>
-
       <div className="buttoncheck">
         <input className="botaoCheck" type="checkbox" id="check" required />
         <label className="check" htmlFor="check">
@@ -102,7 +127,6 @@ export function Formulario() {
           </a>
         </label>
       </div>
-
       <div className="buttoncheck">
         <input className="botaoCheck" type="checkbox" id="check" required />
         <span className="check">
@@ -112,7 +136,6 @@ export function Formulario() {
           </a>
         </span>
       </div>
-
       <button type="submit">
         <img src="./icons/buttonEnviar.svg" alt="Botão agendamento" /> Quero
         participar
