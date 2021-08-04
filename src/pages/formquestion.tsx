@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react";
 import FormQuest from "../components/QuestForm";
 
 export default function HomeForm() {
-  const [level, setLevel] = useState(60);
+  const [level, setLevel] = useState(0);
   useEffect(() => {
     setLevel(90);
   }, []);
