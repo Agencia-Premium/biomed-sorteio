@@ -1,5 +1,6 @@
 /* eslint-disable @next/next/no-html-link-for-pages */
 import axios from "axios";
+import api from "../../services/api";
 import React, { FormEvent, useEffect, useState } from "react";
 import { toast } from "react-toastify";
 import { FaGoogle } from "react-icons/fa";
@@ -14,11 +15,22 @@ interface ICitys {
   nome: string;
 }
 
+interface IDados {
+  nome: string;
+  telefone: string;
+  email: string;
+  cidade: string;
+  termo: boolean;
+  regras: boolean;
+}
+
 export function Formulario() {
   const [name, setName] = useState("");
   const [phone, setPhone] = useState("");
   const [mail, setMail] = useState("");
   const [city, setCity] = useState("");
+  const [termo, setTermo] = useState(false);
+  const [regras, setRegras] = useState(false);
 
   const [citysRondonia, setCitysRondonia] = useState<ICitys[]>([]);
 
@@ -46,6 +58,10 @@ export function Formulario() {
   const router = useRouter();
   const [session] = useSession();
 
+  function sendToEnterprise() {
+    router.push("/enterprises");
+  }
+
   async function handleSubmit(e: FormEvent) {
     e.preventDefault();
 
@@ -54,7 +70,24 @@ export function Formulario() {
       return;
     }
 
-    router.push("/enterprises");
+    const data: IDados = {
+      nome: String(session.user?.name),
+      telefone: phone,
+      email: String(session.user?.email),
+      cidade: city,
+      termo,
+      regras,
+    };
+
+    await api.post("/clientes", data).then(() => {
+      toast.success(
+        "Formulário enviado com sucesso! Você será redirecionado para concluir o processo"
+      );
+    });
+
+    setTimeout(() => {
+      sendToEnterprise();
+    }, 3500);
 
     setName("");
     setPhone("");
@@ -114,7 +147,7 @@ export function Formulario() {
         <option value=""> Escolha sua Cidade </option>
         {citysRondonia.map((item) => {
           return (
-            <option key={item.id} value={item.id}>
+            <option key={item.id} value={item.nome}>
               {item.nome}
             </option>
           );
@@ -128,6 +161,7 @@ export function Formulario() {
           id="check"
           required
           disabled={!session}
+          onChange={(e) => setRegras(e.target.checked)}
         />
         <label className="check" htmlFor="check">
           Concordo com as
@@ -144,6 +178,7 @@ export function Formulario() {
           id="check"
           required
           disabled={!session}
+          onChange={(e) => setTermo(e.target.checked)}
         />
         <span className="check">
           Concordo com os
