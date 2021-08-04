@@ -53,47 +53,37 @@ export function Formulario() {
 
   const [session] = useSession();
 
-  console.log(session);
-
   return (
     <Container id="formBioMed" onSubmit={handleSubmit}>
       {session ? (
-        <button
-          type="button"
-          onClick={() => signOut()}
-          className="signInButton"
-        >
-          <FaGoogle color="#04d361" />
-          {session?.user?.name}
-          <FiX color="#737380" />
-        </button>
+        <>
+          <div className="profile">
+            <img src={session?.user?.image || "./icons/user.png"} alt="User" />
+            <div>
+              <p>{session?.user?.name}</p>
+              <span>{session?.user?.email}</span>
+            </div>
+
+            <button
+              type="button"
+              onClick={() => signOut()}
+              className="signOutButton"
+            >
+              Sair
+            </button>
+          </div>
+        </>
       ) : (
         <button
           type="button"
           onClick={() => signIn("google")}
           className="signInButton"
         >
-          <FaGoogle color="#eba417" />
-          Sign in with Google
+          <FaGoogle color="#FFF" />
+          Entrar com o Google
         </button>
       )}
 
-      <label htmlFor="name">Nome</label>
-      <input
-        id="name"
-        placeholder="Digite seu nome completo"
-        value={name}
-        onChange={(e) => setName(e.target.value)}
-        required
-      />
-      <label htmlFor="mail">E-mail</label>
-      <input
-        id="mail"
-        placeholder="Digite seu endereço de e-mail"
-        value={mail}
-        onChange={(e) => setMail(e.target.value)}
-        required
-      />
       <label htmlFor="phone">Fone/WhatsApp</label>
       <input
         id="phone"

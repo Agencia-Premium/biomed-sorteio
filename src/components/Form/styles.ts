@@ -9,21 +9,105 @@ export const Container = styled.form`
 
   display: flex;
   flex-direction: column;
-  justify-content: center;
 
-  .signInButton {
+  .profile {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+
+    margin: 1rem 0 1.5rem;
+    padding-bottom: 1rem;
+
+    @media (max-width: 375px) {
+      gap: 0.2rem;
+    }
+
+    @media (max-width: 320px) {
+      flex-direction: column;
+      gap: 1rem;
+      margin: 0.5rem 0;
+      text-align: center;
+    }
+
+    img {
+      border-radius: 50%;
+      width: 3rem;
+      height: 3rem;
+
+      @media (min-width: 2560px) {
+        width: 5rem;
+        height: 5rem;
+      }
+    }
+
+    p {
+      font-size: 1.4rem;
+
+      @media (min-width: 2560px) {
+        font-size: 1.8rem;
+      }
+
+      @media (max-width: 375px) {
+        font-size: 1.4rem;
+      }
+    }
+
+    span {
+      @media (min-width: 2560px) {
+        font-size: 1.4rem;
+      }
+
+      @media (max-width: 375px) {
+        font-size: 0.8rem;
+      }
+    }
+  }
+
+  .signOutButton {
     height: 3rem;
-    border-radius: 3rem;
-    background: #e83f5b;
+    border-radius: 0.5rem;
     border: 0;
     padding: 0 1.5rem;
 
     display: flex;
     align-items: center;
     justify-content: center;
+    margin-left: auto;
 
-    color: var(--white);
+    color: #333;
     font-weight: bold;
+    cursor: pointer;
+
+    @media (min-width: 2560px) {
+      height: 4rem;
+      font-size: 1rem;
+    }
+
+    @media (max-width: 320px) {
+      margin-left: 0;
+    }
+
+    &:hover {
+      filter: brightness(0.95);
+    }
+  }
+
+  .signInButton {
+    height: 3rem;
+    border-radius: 0.5rem;
+    background: #e83f5b;
+    border: 0;
+    padding: 0 1.5rem;
+    margin: 2rem;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    color: #fff;
+    font-weight: bold;
+    cursor: pointer;
 
     svg {
       width: 20px;
@@ -41,7 +125,7 @@ export const Container = styled.form`
     transition: filter 0.2s;
 
     &:hover {
-      filter: brightness(0.8);
+      filter: brightness(1.2);
     }
   }
 
@@ -53,26 +137,30 @@ export const Container = styled.form`
 
   @media (max-width: 2000px) {
     margin-top: 2rem;
+    height: 32rem;
   }
 
   @media (max-width: 1600px) {
-    margin-top: 0.5rem;
     padding-top: 1rem;
-    height: 40rem;
+    height: 34rem;
   }
 
   @media (max-width: 1440px) {
-    height: 38rem;
+    height: 32rem;
+    width: 32rem;
   }
 
   @media (max-width: 1280px) {
     width: 26rem;
-    height: 39rem;
     padding: 0 1.2rem;
   }
 
   @media (max-width: 425px) {
     width: 100%;
+  }
+
+  @media (max-width: 320px) {
+    height: 40rem;
   }
 
   label {
@@ -94,6 +182,7 @@ export const Container = styled.form`
   select {
     width: 100%;
     padding: 0 1rem;
+    background: #fff;
     height: 3.6rem;
     border-radius: 0.5rem;
 
