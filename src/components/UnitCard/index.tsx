@@ -7,7 +7,7 @@ export const UnitCard: React.FC = ({}) => {
       {TitleCard.map((e, index) => {
         return (
           // eslint-disable-next-line react/jsx-key
-          <div className="containerCards">
+          <div key={index} className="containerCards">
             <div className="imagem">
               <img
                 src={e.src}
@@ -16,7 +16,7 @@ export const UnitCard: React.FC = ({}) => {
               />
             </div>
 
-            <div key={index} className="contextCard">
+            <div className="contextCard">
               <h2>{e.title}</h2>
               <p>{e.description}</p>
             </div>
