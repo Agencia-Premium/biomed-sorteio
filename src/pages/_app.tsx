@@ -1,6 +1,8 @@
 import type { AppProps } from "next/app";
 import GlobalStyle from "../styles/global";
 
+import { ToastContainer } from "react-toastify";
+
 import { Provider as NextAuthProvider } from "next-auth/client";
 
 function MyApp({ Component, pageProps }: AppProps) {
@@ -8,6 +10,7 @@ function MyApp({ Component, pageProps }: AppProps) {
     <NextAuthProvider session={pageProps.session}>
       <Component {...pageProps} />
       <GlobalStyle />
+      <ToastContainer autoClose={3000} />
     </NextAuthProvider>
   );
 }

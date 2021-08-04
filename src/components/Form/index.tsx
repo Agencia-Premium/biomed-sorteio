@@ -3,7 +3,7 @@ import axios from "axios";
 import React, { FormEvent, useEffect, useState } from "react";
 import { toast } from "react-toastify";
 import { FaGoogle } from "react-icons/fa";
-import { FiX } from "react-icons/fi";
+import { useRouter } from "next/router";
 
 import { signIn, signOut, useSession } from "next-auth/client";
 
@@ -43,15 +43,24 @@ export function Formulario() {
     listCitys();
   }, []);
 
+  const router = useRouter();
+  const [session] = useSession();
+
   async function handleSubmit(e: FormEvent) {
     e.preventDefault();
 
+    if (!session) {
+      toast.error("Para continuar, você precisa fazer login com o Google");
+      return;
+    }
+
+    router.push("/enterprises");
+
     setName("");
     setPhone("");
+    setCity("");
     setMail("");
   }
-
-  const [session] = useSession();
 
   return (
     <Container id="formBioMed" onSubmit={handleSubmit}>
@@ -91,13 +100,16 @@ export function Formulario() {
         value={phone}
         onChange={(e) => setPhone(maskPhone(e.target.value))}
         required
+        disabled={!session}
       />
+
       <label htmlFor="city">Cidade</label>
       <select
         id="city"
         required
         value={city}
         onChange={(e) => setCity(e.target.value)}
+        disabled={!session}
       >
         <option value=""> Escolha sua Cidade </option>
         {citysRondonia.map((item) => {
@@ -108,8 +120,15 @@ export function Formulario() {
           );
         })}
       </select>
+
       <div className="buttoncheck">
-        <input className="botaoCheck" type="checkbox" id="check" required />
+        <input
+          className="botaoCheck"
+          type="checkbox"
+          id="check"
+          required
+          disabled={!session}
+        />
         <label className="check" htmlFor="check">
           Concordo com as
           <a href="/rules" target="_blank">
@@ -117,8 +136,15 @@ export function Formulario() {
           </a>
         </label>
       </div>
+
       <div className="buttoncheck">
-        <input className="botaoCheck" type="checkbox" id="check" required />
+        <input
+          className="botaoCheck"
+          type="checkbox"
+          id="check"
+          required
+          disabled={!session}
+        />
         <span className="check">
           Concordo com os
           <a href="/rules" target="_blank">
